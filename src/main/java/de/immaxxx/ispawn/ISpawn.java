@@ -17,21 +17,19 @@ import java.io.File;
 public final class ISpawn extends JavaPlugin {
 
     public static FileConfiguration config;
-    public static File messagesfile;
     public static YamlConfiguration messages;
     public static Location spawn;
 
 
     @Override
     public void onEnable() {
-        messagesfile = new File("plugins/ISpawn/messages.yml");
-        if (!messagesfile.exists()) {
-            saveResource("messages.yml", false);
+        if (!LoadConfig.messagesfile.exists()) {
+            saveResource("imessages.yml", false);
         }
-        messages = YamlConfiguration.loadConfiguration(messagesfile);
-
-        saveDefaultConfig();
-        config = getConfig();
+        if (!LoadConfig.configfile.exists()) {
+            saveResource("iconfig.yml", false);
+        }
+        LoadConfig.loadConfigs();
 
         //Metrics
         int pluginId = 12513;
@@ -43,6 +41,7 @@ public final class ISpawn extends JavaPlugin {
         this.getCommand("setwarp").setExecutor(new SetWarpCommand());
         this.getCommand("removewarp").setExecutor(new RemoveWarpCommand());
         this.getCommand("warp").setExecutor(new WarpCommand());
+        this.getCommand("isreload").setExecutor(new ISReloadCommand());
 
         //Listener
         Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
