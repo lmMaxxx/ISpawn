@@ -3,6 +3,7 @@
 #
 spawnPermission: false
 warpPermission: false
+activateWarpFunction: true
 onJoinTeleportToSpawn: false
 onDeathTeleportToSpawn: true
 enablePlayerTeleportSound: true

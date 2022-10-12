@@ -9,9 +9,16 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
-public class WarpCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class WarpCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
@@ -55,4 +62,41 @@ public class WarpCommand implements CommandExecutor {
         }
         return true;
     }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        if (ISpawn.config.getBoolean("warpPermission")) {
+            if (sender.hasPermission("ispawn.usewarp")) {
+                if(args.length == 1) {
+                    ArrayList<String> completions = new ArrayList<>();
+                    ArrayList<String> warpNames = new ArrayList<>();
+
+                    for(String warpName : WarpConfig.config.getKeys(false)) {
+                        warpNames.add(warpName);
+                    }
+
+                    StringUtil.copyPartialMatches(args[0], warpNames, completions);
+
+                    Collections.sort(completions);
+                    return completions;
+                }
+            }
+        } else {
+            if(args.length == 1) {
+                ArrayList<String> completions = new ArrayList<>();
+                ArrayList<String> warpNames = new ArrayList<>();
+
+                for(String warpName : WarpConfig.config.getKeys(false)) {
+                    warpNames.add(warpName);
+                }
+
+                StringUtil.copyPartialMatches(args[0], warpNames, completions);
+
+                Collections.sort(completions);
+                return completions;
+            }
+        }
+        return new ArrayList<>();
+    }
+
 }

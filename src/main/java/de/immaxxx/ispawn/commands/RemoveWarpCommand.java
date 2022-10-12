@@ -7,11 +7,16 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class RemoveWarpCommand implements CommandExecutor {
+public class RemoveWarpCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
@@ -40,4 +45,25 @@ public class RemoveWarpCommand implements CommandExecutor {
 
         return true;
     }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+            if (sender.hasPermission("ispawn.removewarp")) {
+                if(args.length == 1) {
+                    ArrayList<String> completions = new ArrayList<>();
+                    ArrayList<String> warpNames = new ArrayList<>();
+
+                    for(String warpName : WarpConfig.config.getKeys(false)) {
+                        warpNames.add(warpName);
+                    }
+
+                    StringUtil.copyPartialMatches(args[0], warpNames, completions);
+
+                    Collections.sort(completions);
+                    return completions;
+                }
+            }
+        return new ArrayList<>();
+    }
+
 }
