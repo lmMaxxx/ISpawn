@@ -7,6 +7,8 @@ activateWarpFunction: true
 onJoinTeleportToSpawn: false
 onDeathTeleportToSpawn: true
 enablePlayerTeleportSound: true
+showWarpsInGUI: true
+warpGUIItem: 'PAPER'
 #
 # Sounds
 teleportSound: 'ENTITY_EXPERIENCE_ORB_PICKUP'

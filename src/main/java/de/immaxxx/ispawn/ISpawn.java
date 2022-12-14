@@ -58,6 +58,7 @@ public final class ISpawn extends JavaPlugin {
         //Listener
         Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(new WarpGUIListener(), this);
 
         //Load Spawn
         if (SpawnConfig.configfile.exists()) {

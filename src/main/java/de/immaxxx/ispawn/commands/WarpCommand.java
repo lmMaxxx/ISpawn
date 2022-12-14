@@ -2,15 +2,15 @@ package de.immaxxx.ispawn.commands;
 
 import de.immaxxx.ispawn.ISpawn;
 import de.immaxxx.ispawn.config.WarpConfig;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
@@ -22,6 +22,48 @@ public class WarpCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
+
+        if (ISpawn.config.getBoolean("showWarpsInGUI")){
+
+            if (WarpConfig.config.getKeys(false).size() == 0){
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noWarps")));
+                return true;
+            }
+            ArrayList<ItemStack> items = new ArrayList<>();
+
+            for (String warp : WarpConfig.config.getKeys(false)) {
+                ItemStack warpGUIItem = new ItemStack(Material.getMaterial(ISpawn.config.getString("warpGUIItem").toUpperCase()));
+                ItemMeta warpGUIItemMeta = warpGUIItem.getItemMeta();
+                warpGUIItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpGUIItemNameColor") + warp));
+                warpGUIItemMeta.setLocalizedName(WarpConfig.config.get(warp + ".World") + "," + WarpConfig.config.get(warp + ".X") + "," + WarpConfig.config.get(warp + ".Y") + "," + WarpConfig.config.get(warp + ".Z") + "," + WarpConfig.config.get(warp + ".Pitch") + "," + WarpConfig.config.get(warp + ".Yaw"));
+                warpGUIItem.setItemMeta(warpGUIItemMeta);
+                items.add(warpGUIItem);
+            }
+
+            Inventory inv = null;
+            
+            if (items.size() <= 9){
+                inv = Bukkit.createInventory(null, 9, ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpsGUITitle")));
+            } else if (items.size() <= 18){
+                inv = Bukkit.createInventory(null, 18, ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpsGUITitle")));
+            } else if (items.size() <= 27) {
+                inv = Bukkit.createInventory(null, 27, ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpsGUITitle")));
+            } else if (items.size() <= 36) {
+                inv = Bukkit.createInventory(null, 36, ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpsGUITitle")));
+            } else if (items.size() <= 45) {
+                inv = Bukkit.createInventory(null, 45, ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpsGUITitle")));
+            } else if (items.size() <= 54) {
+                inv = Bukkit.createInventory(null, 54, ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpsGUITitle")));
+            }
+
+            for (ItemStack item : items) {
+                inv.addItem(item);
+            }
+
+            player.openInventory(inv);
+
+            return true;
+        }
 
         if (args.length == 0) {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("useWarpTeleportCommand")));
@@ -65,6 +107,9 @@ public class WarpCommand implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        if (ISpawn.config.getBoolean("showWarpsInGUI")){
+            return null;
+        }
         if (ISpawn.config.getBoolean("warpPermission")) {
             if (sender.hasPermission("ispawn.usewarp")) {
                 if(args.length == 1) {

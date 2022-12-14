@@ -20,6 +20,10 @@ public class SetWarpCommand implements CommandExecutor {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("useWarpCommand")));
         } else {
             if (player.hasPermission("ispawn.setwarp")) {
+                if (WarpConfig.config.getKeys(false).size() == 54){
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("maxWarps")));
+                    return true;
+                }
                 if (WarpConfig.config.get(args[0]) == null) {
                     WarpConfig.config.set(args[0] + ".World", player.getWorld().getName());
                     WarpConfig.config.set(args[0] + ".X", player.getLocation().getX());

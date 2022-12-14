@@ -3,6 +3,10 @@
 #
 Prefix: '&b&lISpawn &7| '
 noSpawnFound: '&7No &bSpawn &7found!'
+warpsGUITitle: '&b&lISpawn &7| &bWarps'
+warpGUIItemNameColor: '&b'
+maxWarps: '&7You can only create &b54 &7warps!'
+noWarps: '&7No &bWarps &7found!'
 teleportetToSpawn: '&7You have been teleported to the &bspawn&7!'
 spawnSet: '&7The &bSpawn &7was set successfully!'
 youWasTeleportet: '&7You have been teleported to the spawn by &b%player%&7!'
