@@ -29,7 +29,7 @@ public class ParticleTwo {
     public static void two(final Location location, String id, final Particle particle, int amount) {
         if (location.getWorld() != null) {
             ID = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(ISpawn.getPlugin(ISpawn.class), new Runnable() {
-                final Location l = location.add(0.5D, 0.7D, 0.5D);
+                final Location l = location.add(0D, 0.7D, 0D);
                 int time = 16;
 
                 public void run() {

@@ -8,3 +8,23 @@
 # By ImMaxxx
 # Config for ISpawn
 #
+spawnPermission: false
+warpPermission: false
+activateWarpFunction: true
+onJoinTeleportToSpawn: true
+onFirstJoinTeleportToSpawn: true
+onDeathTeleportToSpawn: true
+enablePlayerTeleportSound: true
+enableUpdateCheckerMessageIngame: true
+showWarpsInGUI: true
+warpGUIItem: 'PAPER'
+#
+# Sounds
+teleportSound: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+#
+# Particle Config
+enableSpawnParticles: true
+enableWarpParticles: true
+particleName: 'one' # particleType can be 'one' or 'two'
+particleType: 'FIREWORKS_SPARK'
+particleTypeWarps: 'FIREWORKS_SPARK'
