@@ -19,14 +19,6 @@ public class LoadConfig {
     public static void loadConfigs(){
         addDefaults();
         addDefaults();
-
-        if (new File("plugins/ISpawn/spawn.yml").exists()){
-            boolean file = new File("plugins/ISpawn/spawn.yml").renameTo(new File("plugins/ISpawn/Core/spawn.yml"));
-        }
-        if (new File("plugins/ISpawn/warps.yml").exists()){
-            boolean file = new File("plugins/ISpawn/warps.yml").renameTo(new File("plugins/ISpawn/Core/warps.yml"));
-        }
-
     }
 
     //ReloadConfigs
@@ -62,6 +54,7 @@ public class LoadConfig {
         ISpawn.messages.addDefault("warpExists", "&7The warp &b%warp% &7already exists!");
         ISpawn.messages.addDefault("noRights", "&7You have &bno rights &7to this!");
         ISpawn.messages.addDefault("configReloaded", "&7The configs was &bsuccessfully &7reloaded!");
+        ISpawn.messages.addDefault("updateAvailable", "&7A new version of &b&lISpawn &7is available! §bhttps://www.spigotmc.org/resources/ispawn.94789/");
 
         ISpawn.messages.options().copyDefaults(true);
         try {

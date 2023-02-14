@@ -39,3 +39,5 @@ permissions:
     description: Permission to use /removewarp <warpname>
   ispawn.reload:
     description: Permission to use /isreload
+  ispawn.update:
+    description: Get a message when a new update is available

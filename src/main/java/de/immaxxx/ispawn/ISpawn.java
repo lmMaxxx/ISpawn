@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.concurrent.CompletableFuture;
 
 public final class ISpawn extends JavaPlugin {
@@ -28,6 +30,7 @@ public final class ISpawn extends JavaPlugin {
     public static YamlConfiguration messages;
     public static Location spawn;
     public static String prefix;
+    public static boolean updateAvailable = false;
 
 
     @Override
@@ -39,6 +42,36 @@ public final class ISpawn extends JavaPlugin {
             saveResource("iconfig.yml", false);
         }
         LoadConfig.loadConfigs();
+
+        File spawnfile = new File("plugins/ISpawn/spawn.yml");
+        File warpsfile = new File("plugins/ISpawn/warps.yml");
+        if (spawnfile.exists()) {
+            Path newPath = new File("plugins/ISpawn/Core/spawn.yml").toPath();
+            try {
+                Files.createDirectories(newPath.getParent());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                Files.move(spawnfile.toPath(), newPath);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if (warpsfile.exists()) {
+            Path newPath = new File("plugins/ISpawn/Core/warps.yml").toPath();
+            try {
+                Files.createDirectories(newPath.getParent());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                Files.move(warpsfile.toPath(), newPath);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         prefix = getMessage("Prefix");
 
         //Metrics
@@ -96,6 +129,7 @@ public final class ISpawn extends JavaPlugin {
         this.checkVersionFromSpigot(this, 94789).whenComplete((updateResult, throwable) -> {
             if (updateResult.equals(UpdateResult.UPDATE_AVAILABLE)) {
                 Bukkit.getConsoleSender().sendMessage("§bISpawn §7| Update available! §bhttps://www.spigotmc.org/resources/ispawn.94789/");
+                updateAvailable = true;
             } else {
                 Bukkit.getConsoleSender().sendMessage("§bISpawn §7| Up to Date!");
             }
