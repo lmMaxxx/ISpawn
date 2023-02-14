@@ -1,5 +1,5 @@
 name: ISpawn
-version: 3.4
+version: 3.5
 main: de.immaxxx.ispawn.ISpawn
 api-version: 1.13
 authors: [ ImMaxxx ]
@@ -26,16 +26,16 @@ commands:
 
 permissions:
   ispawn.use:
-    description: Use /spawn
+    description: Permission to use /spawn
   ispawn.setspawn:
-    description: Use /setspawn
+    description: Permission to use /setspawn
   ispawn.tpother:
-    description: Use /spawn <playername>
+    description: Permission to use /spawn <playername>
   ispawn.usewarp:
-    description: Use /warp <warpname>
+    description: Permission to use /warp <warpname>
   ispawn.setwarp:
-    description: Use /setwarp <warpname>
+    description: Permission to use /setwarp <warpname>
   ispawn.removewarp:
-    description: Use /removewarp <warpname>
+    description: Permission to use /removewarp <warpname>
   ispawn.reload:
-    description: Use /isreload
+    description: Permission to use /isreload

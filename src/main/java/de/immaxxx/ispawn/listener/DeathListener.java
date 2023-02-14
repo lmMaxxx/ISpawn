@@ -13,16 +13,13 @@ public class DeathListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        if (player instanceof Player){
-            if (ISpawn.config.getBoolean("onDeathTeleportToSpawn")) {
-                if (SpawnConfig.configfile.exists()) {
+        if (ISpawn.config.getBoolean("onDeathTeleportToSpawn")) {
+            if (SpawnConfig.configfile.exists()) {
+                Location spawn = ISpawn.spawn;
 
-                    Location spawn = ISpawn.spawn;
-
-                    player.teleport(spawn);
-                    if (ISpawn.config.getBoolean("enablePlayerTeleportSound")) {
-                        player.playSound(spawn, Sound.valueOf(ISpawn.config.getString("teleportSound").toUpperCase()), 100, 1);
-                    }
+                player.teleport(spawn);
+                if (ISpawn.config.getBoolean("enablePlayerTeleportSound")) {
+                    player.playSound(spawn, Sound.valueOf(ISpawn.config.getString("teleportSound").toUpperCase()), 100, 1);
                 }
             }
         }

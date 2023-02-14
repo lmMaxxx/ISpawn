@@ -112,6 +112,7 @@ public final class ISpawn extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        Bukkit.getConsoleSender().sendMessage("§bISpawn §7| §bDisabled!");
     }
 
     //Update

@@ -22,6 +22,11 @@ public class JoinListener implements Listener {
                 Location spawn = ISpawn.spawn;
 
                 player.teleport(spawn);
+                Bukkit.getScheduler().runTaskLater(ISpawn.getPlugin(ISpawn.class), () -> {
+                    if (!player.getLocation().equals(spawn)) {
+                        player.teleport(spawn);
+                    }
+                }, 15);
                 if (ISpawn.config.getBoolean("enablePlayerTeleportSound")) {
                     player.playSound(spawn, Sound.valueOf(ISpawn.config.getString("teleportSound").toUpperCase()), 100, 1);
                 }

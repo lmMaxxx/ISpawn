@@ -51,11 +51,8 @@ public class RemoveWarpCommand implements TabExecutor {
             if (sender.hasPermission("ispawn.removewarp")) {
                 if(args.length == 1) {
                     ArrayList<String> completions = new ArrayList<>();
-                    ArrayList<String> warpNames = new ArrayList<>();
 
-                    for(String warpName : WarpConfig.config.getKeys(false)) {
-                        warpNames.add(warpName);
-                    }
+                    ArrayList<String> warpNames = new ArrayList<>(WarpConfig.config.getKeys(false));
 
                     StringUtil.copyPartialMatches(args[0], warpNames, completions);
 
