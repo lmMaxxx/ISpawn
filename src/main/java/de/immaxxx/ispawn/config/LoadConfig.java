@@ -20,7 +20,6 @@ public class LoadConfig {
         addDefaults();
         addDefaults();
 
-        //Check if the config in /plugins/ISpawn/spawn.yml exists and move it to /plugins/ISpawn/Core/spawn.yml
         if (new File("plugins/ISpawn/spawn.yml").exists()){
             boolean file = new File("plugins/ISpawn/spawn.yml").renameTo(new File("plugins/ISpawn/Core/spawn.yml"));
         }
