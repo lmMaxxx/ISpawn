@@ -15,13 +15,13 @@ public class ISReloadCommand implements CommandExecutor {
         if (sender instanceof Player){
             Player player = (Player) sender;
             if (player.hasPermission("ispawn.reload")){
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("configReloaded")));
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("configReloaded")));
                 LoadConfig.reloadConfigs();
             } else {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noRights")));
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noRights")));
             }
         } else {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("configReloaded")));
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("configReloaded")));
             LoadConfig.reloadConfigs();
         }
 

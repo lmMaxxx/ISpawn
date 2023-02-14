@@ -26,7 +26,7 @@ public class WarpCommand implements TabExecutor {
         if (ISpawn.config.getBoolean("showWarpsInGUI")){
 
             if (WarpConfig.config.getKeys(false).size() == 0){
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noWarps")));
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noWarps")));
                 return true;
             }
             ArrayList<ItemStack> items = new ArrayList<>();
@@ -66,7 +66,7 @@ public class WarpCommand implements TabExecutor {
         }
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("useWarpTeleportCommand")));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("useWarpTeleportCommand")));
         } else {
             if (ISpawn.config.getBoolean("warpPermission")) {
                 if (player.hasPermission("ispawn.usewarp")) {
@@ -79,12 +79,12 @@ public class WarpCommand implements TabExecutor {
                         float pitch = (float) WarpConfig.config.getDouble(args[0] + ".Pitch");
                         Location warp = new Location(world, x, y, z, yaw, pitch);
                         player.teleport(warp);
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("teleportetToWarp").replace("%warp%", args[0])));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("teleportetToWarp").replace("%warp%", args[0])));
                     } else {
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("warpNotFound").replace("%warp%", args[0])));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpNotFound").replace("%warp%", args[0])));
                     }
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noRights")));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noRights")));
                 }
             } else {
                 if (WarpConfig.config.get(args[0]) != null) {
@@ -96,9 +96,9 @@ public class WarpCommand implements TabExecutor {
                     float pitch = (float) WarpConfig.config.getDouble(args[0] + ".Pitch");
                     Location warp = new Location(world, x, y, z, yaw, pitch);
                     player.teleport(warp);
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("teleportetToWarp").replace("%warp%", args[0])));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("teleportetToWarp").replace("%warp%", args[0])));
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("warpNotFound").replace("%warp%", args[0])));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpNotFound").replace("%warp%", args[0])));
                 }
             }
         }

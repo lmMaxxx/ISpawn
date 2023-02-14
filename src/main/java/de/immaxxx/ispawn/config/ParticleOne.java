@@ -20,7 +20,7 @@ public class ParticleOne {
         if (ISpawn.config.getString("particleName").equalsIgnoreCase("one")) {
             if (ISpawn.config.getBoolean("enableSpawnParticles") && SpawnConfig.configfile.exists()) {
                 Location spawn = ISpawn.spawn;
-                one(spawn, (String) null, Particle.valueOf(ISpawn.config.getString("particleType")), 1);
+                one(spawn, null, Particle.valueOf(ISpawn.config.getString("particleType")), 1);
             }
         }
 
@@ -30,13 +30,13 @@ public class ParticleOne {
     public static void one(final Location location, String id, final Particle particle, int amount) {
         if (location.getWorld() != null) {
             ID = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(ISpawn.getPlugin(ISpawn.class), new Runnable() {
-                Location l = location.add(0.0D, 0.0D, 0.0D);
+                final Location l = location.add(0.0D, 0.0D, 0.0D);
                 int time = 16;
 
                 public void run() {
-                    if (((List) location.getWorld().getNearbyEntities(location.clone(), 20.0D, 20.0D, 20.0D).stream().filter((e) -> {
+                    if (location.getWorld().getNearbyEntities(location.clone(), 20.0D, 20.0D, 20.0D).stream().filter((e) -> {
                         return e instanceof Player;
-                    }).collect(Collectors.toList())).size() >= 0) {
+                    }).collect(Collectors.toList()).size() >= 0) {
                         switch (this.time) {
                             case 1:
                                 this.shortHandParticle(0.65D, 1.6D, -0.65D);
@@ -97,7 +97,7 @@ public class ParticleOne {
                 }
 
                 private void spawnParticle(float offsetX, float offsetY, float offsetZ, float speed, int count, Location center, double range) {
-                    center.getWorld().spawnParticle(particle, center.getX(), center.getY(), center.getZ(), count, (double) offsetX, (double) offsetY, (double) offsetZ, range > 256.0D ? 1.0D : 0.0D, (Object) null);
+                    center.getWorld().spawnParticle(particle, center.getX(), center.getY(), center.getZ(), count, offsetX, offsetY, offsetZ, range > 256.0D ? 1.0D : 0.0D, null);
                 }
             }, 0L, 2L);
         }

@@ -118,7 +118,7 @@ public class WarpParticle {
             }
 
             private void spawnParticle2(float offsetX, float offsetY, float offsetZ, float speed, int count, Location center, double range) {
-                center.getWorld().spawnParticle(particle, center.getX(), center.getY(), center.getZ(), count, (double) offsetX, (double) offsetY, (double) offsetZ, range > 256.0D ? 1.0D : 0.0D, (Object) null);
+                center.getWorld().spawnParticle(particle, center.getX(), center.getY(), center.getZ(), count, offsetX, offsetY, offsetZ, range > 256.0D ? 1.0D : 0.0D, null);
             }
         }, 0L, 2L);
     }

@@ -16,7 +16,7 @@ public class SpawnCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            if (ISpawn.config.getBoolean("spawnPermission") == true) {
+            if (ISpawn.config.getBoolean("spawnPermission")) {
                 if (player.hasPermission("ispawn.use")) {
 
                     if (SpawnConfig.configfile.exists()) {
@@ -24,12 +24,12 @@ public class SpawnCommand implements CommandExecutor {
                         if (ISpawn.config.getBoolean("enablePlayerTeleportSound")) {
                             player.playSound(ISpawn.spawn, Sound.valueOf(ISpawn.config.getString("teleportSound").toUpperCase()), 100, 1);
                         }
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("teleportetToSpawn")));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("teleportetToSpawn")));
                     } else {
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noSpawnFound")));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noSpawnFound")));
                     }
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noRights")));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noRights")));
                 }
             } else {
                 if (SpawnConfig.configfile.exists()) {
@@ -37,9 +37,9 @@ public class SpawnCommand implements CommandExecutor {
                     if (ISpawn.config.getBoolean("enablePlayerTeleportSound")) {
                         player.playSound(ISpawn.spawn, Sound.valueOf(ISpawn.config.getString("teleportSound").toUpperCase()), 100, 1);
                     }
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("teleportetToSpawn")));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("teleportetToSpawn")));
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noSpawnFound")));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noSpawnFound")));
                 }
             }
         } else {
@@ -48,13 +48,13 @@ public class SpawnCommand implements CommandExecutor {
                 if (target != null && target.isOnline()) {
                     if (SpawnConfig.configfile.exists()) {
                         target.teleport(ISpawn.spawn);
-                        target.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("youWasTeleportet").replace("%player%", player.getName())));
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("youHaveTeleportet").replace("%player%", target.getName())));
+                        target.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("youWasTeleportet").replace("%player%", player.getName())));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("youHaveTeleportet").replace("%player%", target.getName())));
                     } else {
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noSpawnFound")));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noSpawnFound")));
                     }
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("playerNotFound").replace("%player%", args[0])));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("playerNotFound").replace("%player%", args[0])));
                 }
             }
         }

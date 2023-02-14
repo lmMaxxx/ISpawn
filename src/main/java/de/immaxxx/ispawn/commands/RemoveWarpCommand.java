@@ -23,24 +23,24 @@ public class RemoveWarpCommand implements TabExecutor {
 
         if (player.hasPermission("ispawn.removewarp")) {
             if (args.length == 0) {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("useRemoveWarpCommand")));
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("useRemoveWarpCommand")));
             } else {
                 if (WarpConfig.config.get(args[0]) != null) {
 
-                    WarpConfig.config.set(args[0], (Object) null);
+                    WarpConfig.config.set(args[0], null);
                     try {
                         WarpConfig.config.save(WarpConfig.configfile);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     WarpParticle.load();
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("warpRemoved").replace("%warp%", args[0])));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpRemoved").replace("%warp%", args[0])));
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("warpNotFound").replace("%warp%", args[0])));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpNotFound").replace("%warp%", args[0])));
                 }
             }
         } else {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', (String) ISpawn.messages.getString("noRights")));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noRights")));
         }
 
         return true;
