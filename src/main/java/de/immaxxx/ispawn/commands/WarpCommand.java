@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.StringUtil;
@@ -32,10 +33,18 @@ public class WarpCommand implements TabExecutor {
             ArrayList<ItemStack> items = new ArrayList<>();
 
             for (String warp : WarpConfig.config.getKeys(false)) {
-                ItemStack warpGUIItem = new ItemStack(Material.getMaterial(ISpawn.config.getString("warpGUIItem").toUpperCase()));
+
+                Material material = Material.valueOf(ISpawn.config.getString("warpGUIItem").toUpperCase());
+
+                if (WarpConfig.config.get(warp + ".Material") != null){
+                    material = Material.valueOf(WarpConfig.config.getString(warp + ".Material").toUpperCase());
+                }
+
+                ItemStack warpGUIItem = new ItemStack(material);
                 ItemMeta warpGUIItemMeta = warpGUIItem.getItemMeta();
                 warpGUIItemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("warpGUIItemNameColor") + warp));
                 warpGUIItemMeta.setLocalizedName(WarpConfig.config.get(warp + ".World") + "," + WarpConfig.config.get(warp + ".X") + "," + WarpConfig.config.get(warp + ".Y") + "," + WarpConfig.config.get(warp + ".Z") + "," + WarpConfig.config.get(warp + ".Pitch") + "," + WarpConfig.config.get(warp + ".Yaw"));
+                warpGUIItemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DYE, ItemFlag.HIDE_POTION_EFFECTS, ItemFlag.HIDE_UNBREAKABLE);
                 warpGUIItem.setItemMeta(warpGUIItemMeta);
                 items.add(warpGUIItem);
             }

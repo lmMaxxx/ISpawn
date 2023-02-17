@@ -86,7 +86,6 @@ public class LoadConfig {
         ISpawn.config.addDefault("particleTypeWarps", "FIREWORKS_SPARK");
         ISpawn.config.setComments("particleTypeWarps", Collections.singletonList("Here you can choose the type of the particle effect on the warps. You can choose between all particles. If you don't know the names, here is the link: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html"));
 
-
         ISpawn.config.options().copyDefaults(true);
         try {
             ISpawn.config.save(configfile);

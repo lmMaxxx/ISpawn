@@ -22,8 +22,8 @@ public class WarpGUIListener implements Listener {
             double x = Double.parseDouble(event.getCurrentItem().getItemMeta().getLocalizedName().split(",")[1]);
             double y = Double.parseDouble(event.getCurrentItem().getItemMeta().getLocalizedName().split(",")[2]);
             double z = Double.parseDouble(event.getCurrentItem().getItemMeta().getLocalizedName().split(",")[3]);
-            float yaw = Float.parseFloat(event.getCurrentItem().getItemMeta().getLocalizedName().split(",")[4]);
-            float pitch = Float.parseFloat(event.getCurrentItem().getItemMeta().getLocalizedName().split(",")[5]);
+            float pitch = Float.parseFloat(event.getCurrentItem().getItemMeta().getLocalizedName().split(",")[4]);
+            float yaw = Float.parseFloat(event.getCurrentItem().getItemMeta().getLocalizedName().split(",")[5]);
             Location location = new Location(world, x, y, z, yaw, pitch);
             event.getWhoClicked().teleport(location);
         }
