@@ -28,7 +28,7 @@ public class WarpCommand implements TabExecutor {
 
             if (WarpConfig.config.getKeys(false).size() == 0){
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noWarps")));
-                return true;
+                return false;
             }
             ArrayList<ItemStack> items = new ArrayList<>();
 
@@ -71,7 +71,7 @@ public class WarpCommand implements TabExecutor {
 
             player.openInventory(inv);
 
-            return true;
+            return false;
         }
 
         if (args.length == 0) {
@@ -123,11 +123,8 @@ public class WarpCommand implements TabExecutor {
             if (sender.hasPermission("ispawn.usewarp")) {
                 if(args.length == 1) {
                     ArrayList<String> completions = new ArrayList<>();
-                    ArrayList<String> warpNames = new ArrayList<>();
 
-                    for(String warpName : WarpConfig.config.getKeys(false)) {
-                        warpNames.add(warpName);
-                    }
+                    ArrayList<String> warpNames = new ArrayList<>(WarpConfig.config.getKeys(false));
 
                     StringUtil.copyPartialMatches(args[0], warpNames, completions);
 
@@ -138,11 +135,8 @@ public class WarpCommand implements TabExecutor {
         } else {
             if(args.length == 1) {
                 ArrayList<String> completions = new ArrayList<>();
-                ArrayList<String> warpNames = new ArrayList<>();
 
-                for(String warpName : WarpConfig.config.getKeys(false)) {
-                    warpNames.add(warpName);
-                }
+                ArrayList<String> warpNames = new ArrayList<>(WarpConfig.config.getKeys(false));
 
                 StringUtil.copyPartialMatches(args[0], warpNames, completions);
 

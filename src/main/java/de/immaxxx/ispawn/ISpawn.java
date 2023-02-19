@@ -4,6 +4,7 @@ import de.immaxxx.ispawn.commands.*;
 import de.immaxxx.ispawn.config.*;
 import de.immaxxx.ispawn.listener.DeathListener;
 import de.immaxxx.ispawn.listener.JoinListener;
+import de.immaxxx.ispawn.listener.TabCompleteListener;
 import de.immaxxx.ispawn.metrics.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -92,6 +93,7 @@ public final class ISpawn extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
         Bukkit.getPluginManager().registerEvents(new WarpGUIListener(), this);
+//        Bukkit.getPluginManager().registerEvents(new TabCompleteListener(), this);
 
         //Load Spawn
         if (SpawnConfig.configfile.exists()) {
@@ -110,12 +112,15 @@ public final class ISpawn extends JavaPlugin {
             ParticleOne.load();
             ParticleTwo.load();
         }
-        if (WarpConfig.configfile.exists()) {
-            if (WarpConfig.config.getKeys(false).size() == 0) {
-            } else {
-                WarpParticle.load();
+        if (ISpawn.config.getBoolean("activateWarpFunction")) {
+            if (WarpConfig.configfile.exists()) {
+                if (WarpConfig.config.getKeys(false).size() == 0) {
+                } else {
+                    WarpParticle.load();
+                }
             }
         }
+
         Bukkit.getConsoleSender().sendMessage("\n" +
                                               "§b██╗███████╗██████╗  █████╗ ██╗    ██╗███╗   ██╗\n" +
                                               "§b██║██╔════╝██╔══██╗██╔══██╗██║    ██║████╗  ██║\n" +

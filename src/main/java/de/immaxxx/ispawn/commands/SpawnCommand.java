@@ -59,6 +59,6 @@ public class SpawnCommand implements CommandExecutor {
             }
         }
 
-        return true;
+        return false;
     }
 }

@@ -43,7 +43,7 @@ public class RemoveWarpCommand implements TabExecutor {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noRights")));
         }
 
-        return true;
+        return false;
     }
 
     @Override

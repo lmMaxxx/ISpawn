@@ -25,6 +25,6 @@ public class ISReloadCommand implements CommandExecutor {
             LoadConfig.reloadConfigs();
         }
 
-        return true;
+        return false;
     }
 }

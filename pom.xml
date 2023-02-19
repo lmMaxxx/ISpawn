@@ -6,7 +6,7 @@
 
     <groupId>de.immaxxx</groupId>
     <artifactId>ISpawn</artifactId>
-    <version>3.5</version>
+    <version>3.7</version>
     <packaging>jar</packaging>
 
     <name>ISpawn</name>

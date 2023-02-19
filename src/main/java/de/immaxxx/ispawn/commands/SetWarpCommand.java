@@ -62,7 +62,7 @@ public class SetWarpCommand implements TabExecutor {
             }
         }
 
-        return true;
+        return false;
     }
 
     @Override

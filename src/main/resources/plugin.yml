@@ -1,5 +1,5 @@
 name: ISpawn
-version: 3.5
+version: 3.7
 main: de.immaxxx.ispawn.ISpawn
 api-version: 1.13
 authors: [ ImMaxxx ]
@@ -7,22 +7,16 @@ authors: [ ImMaxxx ]
 commands:
   setspawn:
     description: Sets the Spawn
-    usage: /setspawn
   spawn:
     description: Teleports a Player to the Spawn
-    usage: /spawn
   setwarp:
     description: Sets a Warp
-    usage: /setwarp
   removewarp:
     description: Removes a Warp
-    usage: /removewarp
   warp:
     description: Teleports a Player to a Warp
-    usage: /warp
   isreload:
     description: Reloads the Configs
-    usage: /isreload
 
 permissions:
   ispawn.use:

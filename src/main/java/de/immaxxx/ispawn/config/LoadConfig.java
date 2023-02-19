@@ -27,7 +27,7 @@ public class LoadConfig {
         ISpawn.config = YamlConfiguration.loadConfiguration(configfile);
     }
 
-    public static void addDefaults () {
+    private static void addDefaults () {
 
         ISpawn.messages = YamlConfiguration.loadConfiguration(messagesfile);
         ISpawn.config = YamlConfiguration.loadConfiguration(configfile);
