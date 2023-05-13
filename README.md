@@ -1,5 +1,3 @@
-[​IMG]
-
 ISpawn | setting the spawn made easy!
 
 Install:
