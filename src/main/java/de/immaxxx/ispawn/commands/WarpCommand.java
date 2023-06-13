@@ -28,7 +28,7 @@ public class WarpCommand implements TabExecutor {
 
             if (WarpConfig.config.getKeys(false).size() == 0){
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noWarps")));
-                return false;
+                return true;
             }
             ArrayList<ItemStack> items = new ArrayList<>();
 
@@ -71,7 +71,7 @@ public class WarpCommand implements TabExecutor {
 
             player.openInventory(inv);
 
-            return false;
+            return true;
         }
 
         if (args.length == 0) {

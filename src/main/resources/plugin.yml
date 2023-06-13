@@ -6,16 +6,22 @@ authors: [ ImMaxxx ]
 
 commands:
   setspawn:
+    usage: /setspawn
     description: Sets the Spawn
   spawn:
+    usage: /spawn
     description: Teleports a Player to the Spawn
   setwarp:
+    usage: /setwarp
     description: Sets a Warp
   removewarp:
+    usage: /removewarp
     description: Removes a Warp
   warp:
+    usage: /warp
     description: Teleports a Player to a Warp
   isreload:
+    usage: /isreload
     description: Reloads the Configs
 
 permissions:

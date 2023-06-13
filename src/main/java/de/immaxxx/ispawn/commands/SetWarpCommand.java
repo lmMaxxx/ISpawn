@@ -29,8 +29,18 @@ public class SetWarpCommand implements TabExecutor {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("maxWarps")));
                     return true;
                 }
+
                 if (WarpConfig.config.get(args[0]) == null) {
-                    Material material = Material.valueOf(args[1].toUpperCase());
+
+                    Material material = null;
+
+                    if (args[1] != null && !args[1].equals(" ") && !args[1].equals("")){
+                        material = Material.valueOf(args[1].toUpperCase());
+                    }
+
+                    if (Arrays.stream(Material.values()).toList().contains(material)){
+                        WarpConfig.config.set(args[0] + ".Material", material.name().toUpperCase());
+                    }
 
                     WarpConfig.config.set(args[0] + ".World", player.getWorld().getName());
                     WarpConfig.config.set(args[0] + ".X", player.getLocation().getX());
@@ -62,7 +72,7 @@ public class SetWarpCommand implements TabExecutor {
             }
         }
 
-        return false;
+        return true;
     }
 
     @Override

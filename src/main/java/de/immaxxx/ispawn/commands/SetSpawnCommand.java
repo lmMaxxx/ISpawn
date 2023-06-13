@@ -37,6 +37,6 @@ public class SetSpawnCommand implements CommandExecutor {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noRights")));
         }
 
-        return false;
+        return true;
     }
 }
