@@ -1,5 +1,5 @@
 name: ISpawn
-version: 3.7
+version: 3.8
 main: de.immaxxx.ispawn.ISpawn
 api-version: 1.13
 authors: [ ImMaxxx ]

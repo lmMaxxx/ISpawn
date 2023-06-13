@@ -35,12 +35,11 @@ public class SetWarpCommand implements TabExecutor {
 
                     Material material = null;
 
-                    if (args[1] != null && !args[1].isEmpty() && !args[1].equals(" ")) {
+                    if (args.length > 1 && Arrays.stream(Material.values()).anyMatch(material1 -> material1.name().equalsIgnoreCase(args[1]))) {
+                        Material.valueOf(args[1].toUpperCase());
                         material = Material.valueOf(args[1].toUpperCase());
-                    }
-
-                    if (Arrays.stream(Material.values()).collect(Collectors.toList()).contains(material)){
-                        WarpConfig.config.set(args[0] + ".Material", material.name().toUpperCase());
+                    } else {
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("noMaterialFound")));
                     }
 
                     WarpConfig.config.set(args[0] + ".World", player.getWorld().getName());
@@ -50,14 +49,10 @@ public class SetWarpCommand implements TabExecutor {
                     WarpConfig.config.set(args[0] + ".Pitch", player.getLocation().getPitch());
                     WarpConfig.config.set(args[0] + ".Yaw", player.getLocation().getYaw());
 
-                    ArrayList<String> list = new ArrayList<>();
-                    for (Material material1 : Material.values()) {
-                        list.add(material1.name().toUpperCase());
-                    }
-
-                    if (list.contains(material.name().toUpperCase())){
+                    if (material != null){
                         WarpConfig.config.set(args[0] + ".Material", material.name().toUpperCase());
                     }
+
                     try {
                         WarpConfig.config.save(WarpConfig.configfile);
                     } catch (IOException e) {

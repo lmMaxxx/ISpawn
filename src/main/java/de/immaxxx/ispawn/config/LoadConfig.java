@@ -55,6 +55,7 @@ public class LoadConfig {
         ISpawn.messages.addDefault("noRights", "&7You have &bno rights &7to this!");
         ISpawn.messages.addDefault("configReloaded", "&7The configs was &bsuccessfully &7reloaded!");
         ISpawn.messages.addDefault("updateAvailable", "&7A new version of &b&lISpawn &7is available! §bhttps://www.spigotmc.org/resources/ispawn.94789/");
+        ISpawn.messages.addDefault("noMaterialFound", "&cNo item with this name was found. therefore the default item from the config is used.");
 
         ISpawn.messages.options().copyDefaults(true);
         try {
