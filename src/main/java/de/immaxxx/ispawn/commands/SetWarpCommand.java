@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SetWarpCommand implements TabExecutor {
     @Override
@@ -34,11 +35,11 @@ public class SetWarpCommand implements TabExecutor {
 
                     Material material = null;
 
-                    if (args[1] != null && !args[1].isBlank()){
+                    if (args[1] != null && !args[1].isEmpty() && !args[1].equals(" ")) {
                         material = Material.valueOf(args[1].toUpperCase());
                     }
 
-                    if (Arrays.stream(Material.values()).toList().contains(material)){
+                    if (Arrays.stream(Material.values()).collect(Collectors.toList()).contains(material)){
                         WarpConfig.config.set(args[0] + ".Material", material.name().toUpperCase());
                     }
 
