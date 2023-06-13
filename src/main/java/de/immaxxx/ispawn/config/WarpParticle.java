@@ -27,7 +27,7 @@ public class WarpParticle {
                 double y = WarpConfig.config.getDouble(warps + ".Y");
                 double z = WarpConfig.config.getDouble(warps + ".Z");
 
-                return new Location(world, (int) x + 0.5, y, (int) z - 0.5);
+                return new Location(world, x, y, z);
             }).collect(toArrayList());
 
             spawnParticle(warpLocations, Particle.valueOf(ISpawn.config.getString("particleTypeWarps")));
