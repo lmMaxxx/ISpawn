@@ -1,3 +1,5 @@
+![4ed08eba663f3e35ec740db28c971ddf2ca9c25e (1)](https://github.com/lmMaxxx/ISpawn/assets/88971929/019654a6-5399-4267-aadd-0ca393365577)
+
 ISpawn | setting the spawn made easy!
 
 Install:
@@ -27,12 +29,59 @@ ________________________________________________________
 
 Permissions:
 
-Spoiler: Permissions
+ispawn.use:
+description: Use /spawn
+
+ispawn.setspawn:
+description: Use /setspawn
+
+ispawn.tpother:
+description: Use /spawn <playername>
+
+ispawn.usewarp:
+description: Use /warp <warpname>
+
+ispawn.setwarp:
+description: Use /setwarp <warpname>
+
+ispawn.removewarp:
+description: Use /removewarp <warpname>
+
+ispawn.reload:
+description: Use /isreload
+
+ispawn.update:
+description: Get a message when a new update is available
+
 ________________________________________________________
 
 Commands:
 
-Spoiler: Commands
+setspawn:
+description: Sets the Spawn
+usage: /setspawn
+
+spawn:
+description: Teleports a Player to the Spawn
+usage: /spawn
+
+setwarp:
+description: Sets a Warp
+usage: /setwarp
+optional: /setwarp <name> <icon>
+info: Setting an icon is not mandatory and can also be omitted.
+
+removewarp:
+description: Removes a Warp
+usage: /removewarp
+
+warp:
+description: Teleports a Player to a Warp
+usage: /warp
+
+isreload:
+description: Reloads all Configs
+usage: /isreload
 ________________________________________________________
 
 Particle Modes:
