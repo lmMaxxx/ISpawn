@@ -34,7 +34,7 @@ public class SetWarpCommand implements TabExecutor {
 
                     Material material = null;
 
-                    if (args[1] != null && !args[1].equals(" ") && !args[1].equals("")){
+                    if (args[1] != null && !args[1].isBlank()){
                         material = Material.valueOf(args[1].toUpperCase());
                     }
 
