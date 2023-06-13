@@ -21,6 +21,7 @@ commands:
     usage: /warp
     description: Teleports a Player to a Warp
   isreload:
+    aliases: ispawnreload
     usage: /isreload
     description: Reloads the Configs
 
