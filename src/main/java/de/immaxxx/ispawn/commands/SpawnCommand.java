@@ -10,6 +10,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 public class SpawnCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -20,6 +23,12 @@ public class SpawnCommand implements CommandExecutor {
                 if (player.hasPermission("ispawn.use")) {
 
                     if (SpawnConfig.configfile.exists()) {
+
+                        if (isWarmUpTeleport()) {
+                            warmUpTeleport(player);
+                            return true;
+                        }
+
                         player.teleport(ISpawn.spawn);
                         if (ISpawn.config.getBoolean("enablePlayerTeleportSound")) {
                             player.playSound(ISpawn.spawn, Sound.valueOf(ISpawn.config.getString("teleportSound").toUpperCase()), 100, 1);
@@ -33,6 +42,12 @@ public class SpawnCommand implements CommandExecutor {
                 }
             } else {
                 if (SpawnConfig.configfile.exists()) {
+
+                    if (isWarmUpTeleport()) {
+                        warmUpTeleport(player);
+                        return true;
+                    }
+
                     player.teleport(ISpawn.spawn);
                     if (ISpawn.config.getBoolean("enablePlayerTeleportSound")) {
                         player.playSound(ISpawn.spawn, Sound.valueOf(ISpawn.config.getString("teleportSound").toUpperCase()), 100, 1);
@@ -47,6 +62,14 @@ public class SpawnCommand implements CommandExecutor {
             if (player.hasPermission("ispawn.tpother")) {
                 if (target != null && target.isOnline()) {
                     if (SpawnConfig.configfile.exists()) {
+
+                        if (isWarmUpTeleport() && isWarumupTPOtherEnabled()) {
+                            int seconds = ISpawn.config.getInt("teleportWarmupSeconds");
+                            warmUpTeleport(target);
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("teleportWarmupMessageOther").replace("%player%", target.getName())).replace("%seconds%", String.valueOf(seconds)));
+                            return true;
+                        }
+
                         target.teleport(ISpawn.spawn);
                         target.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("youWasTeleportet").replace("%player%", player.getName())));
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("youHaveTeleportet").replace("%player%", target.getName())));
@@ -61,4 +84,44 @@ public class SpawnCommand implements CommandExecutor {
 
         return true;
     }
+
+    public static final ArrayList<UUID> inWarmup = new ArrayList<>();
+
+    private static void warmUpTeleport(Player player) {
+
+        int seconds = ISpawn.config.getInt("teleportWarmupSeconds");
+        inWarmup.add(player.getUniqueId());
+
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("teleportWarmupMessage").replace("%seconds%", String.valueOf(seconds))));
+
+        Bukkit.getScheduler().runTaskLater(ISpawn.getPlugin(ISpawn.class), () -> {
+            if (!inWarmup.contains(player.getUniqueId())) {
+                return;
+            }
+            inWarmup.remove(player.getUniqueId());
+            player.teleport(ISpawn.spawn);
+            if (ISpawn.config.getBoolean("enablePlayerTeleportSound")) {
+                player.playSound(ISpawn.spawn, Sound.valueOf(ISpawn.config.getString("teleportSound").toUpperCase()), 100, 1);
+            }
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("Prefix")) + ChatColor.translateAlternateColorCodes('&', ISpawn.messages.getString("teleportetToSpawn")));
+        }, seconds * 20L);
+
+    }
+
+    private static boolean isWarumupTPOtherEnabled() {
+        if (ISpawn.config.getBoolean("enableTeleportWarmupOnTPOther")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static boolean isWarmUpTeleport() {
+        if (ISpawn.config.getInt("teleportWarmupSeconds") > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

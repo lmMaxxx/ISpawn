@@ -5,6 +5,7 @@ import de.immaxxx.ispawn.config.*;
 import de.immaxxx.ispawn.listener.DeathListener;
 import de.immaxxx.ispawn.listener.JoinListener;
 import de.immaxxx.ispawn.listener.TabCompleteListener;
+import de.immaxxx.ispawn.listener.WarmUpListeners;
 import de.immaxxx.ispawn.metrics.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -94,6 +95,7 @@ public final class ISpawn extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
         Bukkit.getPluginManager().registerEvents(new WarpGUIListener(), this);
 //        Bukkit.getPluginManager().registerEvents(new TabCompleteListener(), this);
+        Bukkit.getPluginManager().registerEvents(new WarmUpListeners(), this);
 
         //Load Spawn
         if (SpawnConfig.configfile.exists()) {

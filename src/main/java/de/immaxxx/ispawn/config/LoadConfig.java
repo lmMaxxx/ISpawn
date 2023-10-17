@@ -56,6 +56,9 @@ public class LoadConfig {
         ISpawn.messages.addDefault("configReloaded", "&7The configs was &bsuccessfully &7reloaded!");
         ISpawn.messages.addDefault("updateAvailable", "&7A new version of &b&lISpawn &7is available! §bhttps://www.spigotmc.org/resources/ispawn.94789/");
         ISpawn.messages.addDefault("noMaterialFound", "&cNo item with this name was found. therefore the default item from the config is used.");
+        ISpawn.messages.addDefault("teleportWarmupMessage", "&7You will be teleported in &b%seconds% &7seconds!");
+        ISpawn.messages.addDefault("teleportWarmupMessageOther", "&7The player &b%player% &7will be teleported in &b%seconds% &7seconds!");
+        ISpawn.messages.addDefault("teleportWarmupMessageCanceled", "&cThe teleportation was canceled because you moved!");
 
         ISpawn.messages.options().copyDefaults(true);
         try {
@@ -86,6 +89,10 @@ public class LoadConfig {
         ISpawn.config.setComments("particleType", Collections.singletonList("Here you can choose the type of the particle effect on the spawn. You can choose between all particles. If you don't know the names, here is the link: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html"));
         ISpawn.config.addDefault("particleTypeWarps", "FIREWORKS_SPARK");
         ISpawn.config.setComments("particleTypeWarps", Collections.singletonList("Here you can choose the type of the particle effect on the warps. You can choose between all particles. If you don't know the names, here is the link: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html"));
+        ISpawn.config.addDefault("teleportWarmupSeconds", 3);
+        ISpawn.config.setComments("teleportWarmupSeconds", Collections.singletonList("Here you can set how long the player has to wait until he is teleported to the spawn. (in seconds) If you don't want a warmup, set it to 0."));
+        ISpawn.config.addDefault("enableTeleportWarmupOnTPOther", true);
+        ISpawn.config.setComments("enableTeleportWarmupOnTPOther", Collections.singletonList("Here you can set whether the warmup should also be used when teleporting other players."));
 
         ISpawn.config.options().copyDefaults(true);
         try {
