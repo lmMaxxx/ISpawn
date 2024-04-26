@@ -105,8 +105,7 @@ public final class ISpawn extends JavaPlugin {
             double z = SpawnConfig.config.getDouble("Spawn.Z");
             float yaw = (float) SpawnConfig.config.getDouble("Spawn.Yaw");
             float pitch = (float) SpawnConfig.config.getDouble("Spawn.Pitch");
-            Location location = new Location(world, x, y, z, yaw, pitch);
-            spawn = location;
+            spawn = new Location(world, x, y, z, yaw, pitch);
         }
 
         //Particles
@@ -116,8 +115,7 @@ public final class ISpawn extends JavaPlugin {
         }
         if (ISpawn.config.getBoolean("activateWarpFunction")) {
             if (WarpConfig.configfile.exists()) {
-                if (WarpConfig.config.getKeys(false).size() == 0) {
-                } else {
+                if (!WarpConfig.config.getKeys(false).isEmpty()) {
                     WarpParticle.load();
                 }
             }
